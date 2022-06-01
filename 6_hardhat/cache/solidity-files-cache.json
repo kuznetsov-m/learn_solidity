@@ -1,0 +1,40 @@
+{
+  "_format": "hh-sol-cache-2",
+  "files": {
+    "/Users/mihail/MyFiles/Workspace/learn_solidity/6_hardhat/contracts/Payments.sol": {
+      "lastModificationDate": 1654097143113,
+      "contentHash": "2bb8a7f5897d6b77f698da4cd1cf981c",
+      "sourceName": "contracts/Payments.sol",
+      "solcConfig": {
+        "version": "0.8.4",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "Payments"
+      ]
+    }
+  }
+}
