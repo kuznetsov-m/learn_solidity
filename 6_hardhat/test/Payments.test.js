@@ -1,5 +1,5 @@
-const { expext, expect } = require("chai")
-const { erhers } = require("hardhat")
+const { expect } = require("chai")
+const { ethers } = require("hardhat")
 
 describe("Payments", function () {
     let acc1
