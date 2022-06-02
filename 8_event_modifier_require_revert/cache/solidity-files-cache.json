@@ -1,0 +1,40 @@
+{
+  "_format": "hh-sol-cache-2",
+  "files": {
+    "/Users/mihail/MyFiles/Workspace/learn_solidity/8_event_modifier_require_revert/contracts/Demo.sol": {
+      "lastModificationDate": 1654179606344,
+      "contentHash": "219a1f33146bf6a45b72e352a2cb2e5b",
+      "sourceName": "contracts/Demo.sol",
+      "solcConfig": {
+        "version": "0.8.4",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "Demo"
+      ]
+    }
+  }
+}
