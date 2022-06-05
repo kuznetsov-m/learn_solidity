@@ -32,3 +32,9 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+
+
+# Notes
+- Зависимость `"set-interval-async": "^2.0.3"` для работы с интервалом. Через интервал обращаемся к blockchain для чтения текущей цены
+
+- Чтобы не перезапрашивать getPrice() из контракта ежесекундно - эмулируем падение цены той же формулой, что и в контракте при расчете цены.

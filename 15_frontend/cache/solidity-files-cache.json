@@ -2,8 +2,8 @@
   "_format": "hh-sol-cache-2",
   "files": {
     "/Users/mihail/MyFiles/Workspace/learn_solidity/15_frontend/contracts/DutchAuction.sol": {
-      "lastModificationDate": 1654362998410,
-      "contentHash": "30e59f07936c861e367175c55529e7fe",
+      "lastModificationDate": 1654454152490,
+      "contentHash": "b8c03d68f6b5eecdec96626f92e07c32",
       "sourceName": "contracts/DutchAuction.sol",
       "solcConfig": {
         "version": "0.8.13",
@@ -28,9 +28,7 @@
           }
         }
       },
-      "imports": [
-        "hardhat/console.sol"
-      ],
+      "imports": [],
       "versionPragmas": [
         "^0.8.0"
       ],
