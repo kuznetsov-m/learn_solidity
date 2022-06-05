@@ -20,4 +20,6 @@ npm run dev
 
 # Links
 
-https://www.youtube.com/watch?v=oicmTYQEKmU
+- https://www.youtube.com/watch?v=oicmTYQEKmU
+
+- part 2 https://www.youtube.com/watch?v=13YY-YQoG60&t=1s
