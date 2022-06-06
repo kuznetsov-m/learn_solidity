@@ -104,13 +104,17 @@ export default class extends Component {
       })
     }, 1000)
 
-    // const startBlockNumber = await this._provider.getBlockNumber()
-    // this._auction.on('Bought', (...args) => {
-    //   const event = args[args.length - 1]
-    //   if(event.blockNumber <= startBlockNumber) return
+    // Использование события Bought для остановки аукциона на front
+    // в hardhat есть проблема - иногда выдает старые events
+    // чтобы исключить возможность среагировать на не актуальный event,
+    // будем опираться на startBlockNumber:
+    const startBlockNumber = await this._provider.getBlockNumber()
+    this._auction.on('Bought', (...args) => {
+      const event = args[args.length - 1]
+      if(event.blockNumber <= startBlockNumber) return
 
-    //   args[0], args[1]
-    // })
+      args[0], args[1]
+    })
   }
 
   updateStopped = async() => {
