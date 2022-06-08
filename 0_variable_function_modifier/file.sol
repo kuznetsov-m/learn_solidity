@@ -94,9 +94,16 @@ contract C {
     // create autonomous data copy
 
     // locations:
-    // - memory (location: function arguments; life cycle: callback function live )
-    // - storage (location: state variables; life cycle = contract live)
-    // - calldata (like memory; need for outside functions parameters)
+    // - memory (var not written to the blockchain.
+    //          To be stored in memory a variable has to be defined inside a function.
+    //          These variables are temporary and will be destroyed once the function has completed.)
+    // - storage (written to the blockchain; life cycle = contract live)
+    //           All global variables are by default storage variables
+    // - calldata (only for parameters of external contract functions)
+    //             a non-modifiable, non-persistent area where function arguments are stored.
+    //             It behaves mostly like memory.
+
+
 
     uint[] x;
     
