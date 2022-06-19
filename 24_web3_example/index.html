@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
+
+<div>
+    <p>Here you can pay for our services</p>
+    <p>Wallet address: <span id="wallet-address"></span></p>
+    <p>
+        Amount (Ether):
+        <input name="name" autocomplete="given-name" type="string" id="AMOUNT" value="0.0001">
+    </p>
+    <p>
+        Purpose of payment:
+        <input name="name" autocomplete="given-name" type="string" id="MESSAGE">
+    </p>
+    <button id="paybutton">Send</button>
+    <p>All your payments:</p>
+    <div style="text-align:left">
+        <p><span id="alltransactions"></span></p>
+    </div>
+</div>
+
+<script type="text/javascript">
+    // 1. Connect metamask to our site. Get the user's address
+    //TODO
+    //Checking network
+    //Dates of transactions
+    //Amount
+    var account = null;
+    var contract = null;
+    const ABI= [
+        {
+            "inputs": [
+                {
+                    "internalType": "string",
+                    "name": "message",
+                    "type": "string"
+                }
+            ],
+            "name": "SendPayment",
+            "outputs": [],
+            "stateMutability": "payable",
+            "type": "function"
+            },
+            {
+            "anonymous": false,
+            "inputs": [
+                {
+                    "indexed": false,
+                    "internalType": "string",
+                    "name": "message",
+                    "type": "string"
+                },
+                {
+                    "indexed": true,
+                    "internalType": "address",
+                    "name": "",
+                    "type": "address"
+                },
+                {
+                    "indexed": false,
+                    "internalType": "uint256",
+                    "name": "",
+                    "type": "uint256"
+                }
+            ],
+            "name": "PaymentReceived",
+            "type": "event"
+            },  
+        ];
+    const ADDRESS = "0x3DcFE8882E4fC66d02EA49980Ec552540e559Ba7" ;
+    (async () => {
+        if (window.ethereum) {
+            await window.ethereum.send('eth_requestAccounts');
+            window.web3 = new Web3(window.ethereum) ;
+
+            var accounts = await web3.eth.getAccounts();
+            account = accounts[0];
+            document.getElementById('wallet-address').textContent = account;
+                
+            contract = new web3.eth.Contract(ABI, ADDRESS);
+                
+            document.getElementById('paybutton').onclick = () => {
+                var message = document.getElementById("MESSAGE").value;
+                contract.methods.SendPayment(message).send({ from: account, value: "100000000000000" });
+            }
+
+        }  
+        else {
+            document.getElementById('wallet-address').textContent = "Please connect your MetaMask to Kovan network!";
+        }
+    })();
+
+    async function refreshakk() {
+        var accounts = await web3.eth.getAccounts();
+        account = accounts[0];
+        document.getElementById('wallet-address').textContent = account;
+        
+        var results = await contract.getPastEvents(
+            'PaymentReceived', 
+            {
+                fromBlock: 0,
+                toBlock: 'latest',
+                topics: [null, web3.utils.padLeft(account, 64).toString().toLowerCase(), null]
+                
+            }
+        );
+
+        var alltransactiontext="";
+        for (i = 0; i < results.length; i++) {
+            console.log(results[i].returnValues);
+            alltransactiontext= alltransactiontext+ "<left>"+results[i].returnValues[0]+"</left><br/>";
+            
+        }
+        document.getElementById('alltransactions').innerHTML = alltransactiontext;
+    }
+    setInterval(refreshakk, 1000);
+</script>
